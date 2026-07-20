@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Galería - ARAMA Florería</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="galeria.css">
+</head>
+<body>
+
+    <!-- ===== HEADER ===== -->
+    <header class="bg-arama-verde text-arama-crema shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+            <a href="index.html" class="flex items-center gap-2 text-xl font-bold">
+                <i class="fas fa-seedling text-arama-dorado"></i> ARAMA
+            </a>
+            <nav class="flex gap-4 text-sm">
+                <a href="index.html" class="hover:text-arama-dorado transition">Inicio</a>
+                <a href="index.html#contacto" class="hover:text-arama-dorado transition">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        
+        <div class="flex items-center justify-between mb-8">
+            <h1 class="text-4xl font-bold text-arama-verde flex items-center gap-3">
+                <i class="fas fa-images text-arama-rosa"></i> Galería
+            </h1>
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Volver
+            </a>
+        </div>
+
+        <!-- Categorías -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
+    
+    <!-- Ramos -->
+    <a href="#categoria-ramos" class="category-card" style="background: linear-gradient(135deg, #c45a6d, #8a3a4a);">
+        <div class="overlay">
+            <h3>Ramos</h3>
+            <p>12 imágenes</p>
+        </div>
+    </a>
+    
+    <!-- Centros de Mesa -->
+    <a href="#categoria-centros" class="category-card" style="background: linear-gradient(135deg, #b8945c, #8a6d3a);">
+        <div class="overlay">
+            <h3>Centros de Mesa</h3>
+            <p>6 imágenes</p>
+        </div>
+    </a>
+    
+    <!-- Novias -->
+    <a href="#categoria-novias" class="category-card" style="background: linear-gradient(135deg, #e8a0b4, #c45a6d);">
+        <div class="overlay">
+            <h3>Novias</h3>
+            <p>4 imágenes</p>
+        </div>
+    </a>
+    
+    <!-- Cajas -->
+    <a href="#categoria-cajas" class="category-card" style="background: linear-gradient(135deg, #6b8a7a, #1e3a2f);">
+        <div class="overlay">
+            <h3>Cajas</h3>
+            <p>12 imágenes</p>
+        </div>
+    </a>
+    
+    <!-- Eventos -->
+    <a href="#categoria-eventos" class="category-card" style="background: linear-gradient(135deg, #d4a373, #b8945c);">
+        <div class="overlay">
+            <h3>Eventos</h3>
+            <p>13 imágenes</p>
+        </div>
+    </a>
+    
+    <!-- Bouquet -->
+    <a href="#categoria-bouquet" class="category-card" style="background: linear-gradient(135deg, #c45a6d, #6b3a4a);">
+        <div class="overlay">
+            <h3>Bouquet</h3>
+            <p>9 imágenes</p>
+        </div>
+    </a>
+    
+</div>
+
+        <!-- ===== SECCIONES DE IMÁGENES POR CATEGORÍA ===== -->
+        
+        <!-- Ramos -->
+        <section id="categoria-ramos" class="mt-12 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-arama-verde border-b-4 border-arama-rosa inline-block pb-1 mb-4">
+                <i class="fas fa-bouquet text-arama-rosa mr-2"></i>Ramos
+            </h2>
+            <div class="gallery-grid" data-category="ramos">
+                <!-- 🔥 REEMPLAZA con tus imágenes -->
+                <img src="img/ram1.jpeg" alt="Ramo 1" onclick="openModal(this.src)">
+                <img src="img/ram2.jpeg" alt="Ramo 2" onclick="openModal(this.src)">
+                <img src="img/ram3.jpeg" alt="Ramo 3" onclick="openModal(this.src)">
+                <img src="img/ram4.jpeg" alt="Ramo 4" onclick="openModal(this.src)">
+                <img src="img/ram5.jpeg" alt="Ramo 5" onclick="openModal(this.src)">
+                <img src="img/ram6.jpeg" alt="Ramo 6" onclick="openModal(this.src)">
+                <img src="img/ram7.jpeg" alt="Ramo 1" onclick="openModal(this.src)">
+                <img src="img/ram8.jpeg" alt="Ramo 2" onclick="openModal(this.src)">
+                <img src="img/ram9.jpeg" alt="Ramo 3" onclick="openModal(this.src)">
+                <img src="img/ram10.jpeg" alt="Ramo 4" onclick="openModal(this.src)">
+                <img src="img/ram11.jpeg" alt="Ramo 5" onclick="openModal(this.src)">
+                <img src="img/ram12.jpeg" alt="Ramo 6" onclick="openModal(this.src)">
+            </div>
+        </section>
+
+        <!-- Centros de Mesa -->
+        <section id="categoria-centros" class="mt-12 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-arama-verde border-b-4 border-arama-dorado inline-block pb-1 mb-4">
+                <i class="fas fa-circle text-arama-dorado mr-2"></i>Centros de Mesa
+            </h2>
+            <div class="gallery-grid" data-category="centros">
+                <img src="img/centro1.jpeg" alt="Centro 1" onclick="openModal(this.src)">
+                <img src="img/centro2.jpeg" alt="Centro 2" onclick="openModal(this.src)">
+                <img src="img/centro3.jpeg" alt="Centro 3" onclick="openModal(this.src)">
+                <img src="img/centro4.jpeg" alt="Centro 4" onclick="openModal(this.src)">
+                <img src="img/centro5.jpeg" alt="Centro 5" onclick="openModal(this.src)">
+                <img src="img/centro6.jpeg" alt="Centro 1" onclick="openModal(this.src)">
+            </div>
+        </section>
+
+        <!-- Novias -->
+        <section id="categoria-novias" class="mt-12 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-arama-verde border-b-4 border-arama-rosa inline-block pb-1 mb-4">
+                <i class="fas fa-venus-mars text-arama-rosa mr-2"></i>Novias
+            </h2>
+            <div class="gallery-grid" data-category="novias">
+                <img src="img/novia1.jpeg" alt="Novia 1" onclick="openModal(this.src)">
+                <img src="img/novia2.jpeg" alt="Novia 2" onclick="openModal(this.src)">
+                <img src="img/novia3.jpeg" alt="Novia 3" onclick="openModal(this.src)">
+                <img src="img/novia4.jpeg" alt="Novia 4" onclick="openModal(this.src)">
+            </div>
+        </section>
+
+        <!-- Cajas -->
+        <section id="categoria-cajas" class="mt-12 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-arama-verde border-b-4 border-arama-dorado inline-block pb-1 mb-4">
+                <i class="fas fa-gift text-arama-dorado mr-2"></i>Cajas
+            </h2>
+            <div class="gallery-grid" data-category="cajas">
+                <img src="img/caja1.jpeg" alt="Caja 1" onclick="openModal(this.src)">
+                <img src="img/caja2.jpeg" alt="Caja 2" onclick="openModal(this.src)">
+                <img src="img/caja3.jpeg" alt="Caja 3" onclick="openModal(this.src)">
+                <img src="img/caja4.jpeg" alt="Caja 4" onclick="openModal(this.src)">
+                <img src="img/caja5.jpeg" alt="Caja 1" onclick="openModal(this.src)">
+                <img src="img/caja6.jpeg" alt="Caja 2" onclick="openModal(this.src)">
+                <img src="img/caja7.jpeg" alt="Caja 3" onclick="openModal(this.src)">
+                <img src="img/caja8.jpeg" alt="Caja 4" onclick="openModal(this.src)">
+                <img src="img/caja9.jpeg" alt="Caja 1" onclick="openModal(this.src)">
+                <img src="img/caja10.jpeg" alt="Caja 2" onclick="openModal(this.src)">
+                <img src="img/caja11.jpeg" alt="Caja 3" onclick="openModal(this.src)">
+                <img src="img/caja12.jpeg" alt="Caja 4" onclick="openModal(this.src)">
+            </div>
+        </section>
+
+        <!-- Eventos -->
+        <section id="categoria-eventos" class="mt-12 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-arama-verde border-b-4 border-arama-rosa inline-block pb-1 mb-4">
+                <i class="fas fa-calendar-check text-arama-rosa mr-2"></i>Eventos
+            </h2>
+            <div class="gallery-grid" data-category="eventos">
+                <img src="img/evento1.jpeg" alt="Evento 1" onclick="openModal(this.src)">
+                <img src="img/evento2.jpeg" alt="Evento 2" onclick="openModal(this.src)">
+                <img src="img/evento3.jpeg" alt="Evento 3" onclick="openModal(this.src)">
+                <img src="img/evento4.jpeg" alt="Evento 4" onclick="openModal(this.src)">
+                <img src="img/evento5.jpeg" alt="Evento 5" onclick="openModal(this.src)">
+                <img src="img/evento6.jpeg" alt="Evento 1" onclick="openModal(this.src)">
+                <img src="img/evento7.jpeg" alt="Evento 2" onclick="openModal(this.src)">
+                <img src="img/evento8.jpeg" alt="Evento 3" onclick="openModal(this.src)">
+                <img src="img/evento9.jpeg" alt="Evento 4" onclick="openModal(this.src)">
+                <img src="img/evento10.jpeg" alt="Evento 5" onclick="openModal(this.src)">
+                 <img src="img/evento11.jpeg" alt="Evento 1" onclick="openModal(this.src)">
+                <img src="img/evento12.jpeg" alt="Evento 2" onclick="openModal(this.src)">
+                <img src="img/evento13.jpeg" alt="Evento 3" onclick="openModal(this.src)">
+            </div>
+        </section>
+
+        <!-- Bouquet -->
+        <section id="categoria-bouquet" class="mt-12 scroll-mt-20">
+            <h2 class="text-2xl font-bold text-arama-verde border-b-4 border-arama-dorado inline-block pb-1 mb-4">
+                <i class="fas fa-hand-sparkles text-arama-dorado mr-2"></i>Bouquet
+            </h2>
+            <div class="gallery-grid" data-category="bouquet">
+                <img src="img/bo1.jpeg" alt="Bouquet 1" onclick="openModal(this.src)">
+                <img src="img/bo2.jpeg" alt="Bouquet 2" onclick="openModal(this.src)">
+                <img src="img/bo3.jpeg" alt="Bouquet 3" onclick="openModal(this.src)">
+                <img src="img/bo4.jpeg" alt="Bouquet 4" onclick="openModal(this.src)">
+                <img src="img/bo5.jpeg" alt="Bouquet 1" onclick="openModal(this.src)">
+                <img src="img/bo6.jpeg" alt="Bouquet 2" onclick="openModal(this.src)">
+                <img src="img/bo7.jpeg" alt="Bouquet 3" onclick="openModal(this.src)">
+                <img src="img/bo8.jpeg" alt="Bouquet 4" onclick="openModal(this.src)">
+                <img src="img/bo9.jpeg" alt="Bouquet 1" onclick="openModal(this.src)">
+            </div>
+        </section>
+
+    </main>
+
+
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="close" onclick="closeModal()">&times;</span>
+        <img id="modalImage" src="" alt="Imagen ampliada">
+    </div>
+
+    <footer class="bg-arama-verde text-arama-crema mt-12 py-6">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p><i class="fas fa-seedling text-arama-dorado"></i> ARAMA Florería - Todos los derechos reservados</p>
+        </div>
+    </footer>
+
+    <script>
+        function openModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImage');
+            modal.classList.add('active');
+            modalImg.src = src;
+            document.body.style.overflow = 'hidden'; 
+        }
+
+       
+        function closeModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+       
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,386 @@
+:root {
+      --arama-verde: hsl(156, 29%, 24%);
+      --arama-rosa: #c45a6d;
+      --arama-crema: #f9f2e0;
+      --arama-dorado: #b8945c;
+      --arama-claro: #f3ebe1;
+    }
+    body {
+      background-color: var(--arama-crema);
+      font-family: 'Segoe UI', Roboto, system-ui, sans-serif;
+    }
+    .bg-arama-verde { background-color: var(--arama-verde); }
+    .bg-arama-rosa { background-color: var(--arama-rosa); }
+    .bg-arama-crema { background-color: var(--arama-crema); }
+    .bg-arama-dorado { background-color: var(--arama-dorado); }
+    .text-arama-verde { color: var(--arama-verde); }
+    .text-arama-rosa { color: var(--arama-rosa); }
+    .text-arama-dorado { color: var(--arama-dorado); }
+    .border-arama-verde { border-color: var(--arama-verde); }
+    .hover\:bg-arama-rosa:hover { background-color: var(--arama-rosa); }
+    .hover\:text-arama-crema:hover { color: var(--arama-crema); }
+
+    /* detalles decorativos */
+    .floral-shadow {
+      box-shadow: 0 8px 20px rgba(30, 58, 47, 0.15);
+    }
+    .section-title::after {
+      
+      content: "";
+      margin-left: 10px;
+      opacity: 0.7;
+    }
+    .card-hover {
+      transition: all 0.2s ease;
+    }
+    .card-hover:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 25px -8px rgba(30, 58, 47, 0.25);
+    }
+    iframe {
+      border-radius: 1rem;
+      border: 2px solid var(--arama-verde);
+    }
+    
+    .logo-arama {
+      max-height: 70px;
+      filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));
+    }
+    /* enlaces */
+    a {
+      transition: color 0.15s;
+    }
+    .footer-link {
+      color: #d4c9b5;
+    }
+    .footer-link:hover {
+      color: #f9f2e0;
+      text-decoration: underline;
+    }
+
+     .carousel-container {
+    position: relative;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    overflow: hidden;
+    border-radius: 1.5rem;
+    box-shadow: 0 12px 30px rgba(30, 58, 47, 0.2);
+  }
+  .carousel-track {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+  }
+  .carousel-slide {
+    min-width: 100%;
+    height: auto; 
+    display: block;
+    object-fit: cover;
+  }
+  .carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(30, 58, 47, 0.7);
+    color: #f9f2e0;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 1.5rem;
+    transition: background 0.3s;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .carousel-btn:hover {
+    background: rgba(196, 90, 109, 0.9);
+  }
+  .carousel-btn.prev { left: 10px; }
+  .carousel-btn.next { right: 10px; }
+  
+  .carousel-dots {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 15px;
+  }
+  .carousel-dot {
+    width: 14px;
+    height: 14px;
+    border-radius: 50%;
+    background: #d4c9b5;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  .carousel-dot.active {
+    background: #c45a6d;
+    border-color: #1e3a2f;
+    transform: scale(1.2);
+  }
+
+/* ===== MISIÓN Y VISIÓN - VERSIÓN COMPACTA ===== */
+
+#mision-vision {
+    scroll-margin-top: 80px;
+}
+
+.mision-vision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.mision-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border-left: 6px solid #c45a6d;
+    box-shadow: 0 4px 15px rgba(30, 58, 47, 0.08);
+    transition: all 0.3s ease;
+}
+
+.vision-card {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border-left: 6px solid #b8945c;
+    box-shadow: 0 4px 15px rgba(30, 58, 47, 0.08);
+    transition: all 0.3s ease;
+}
+
+.mision-card:hover,
+.vision-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(30, 58, 47, 0.15);
+}
+
+.mision-title {
+    color: #c45a6d;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.vision-title {
+    color: #b8945c;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.mision-text,
+.vision-text {
+    color: #4a5568;
+    line-height: 1.7;
+}
+
+.mision-icon,
+.vision-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+}
+
+.mision-icon {
+    background: rgba(196, 90, 109, 0.15);
+    color: #c45a6d;
+}
+
+.vision-icon {
+    background: rgba(184, 148, 92, 0.15);
+    color: #b8945c;
+}
+
+@media (max-width: 768px) {
+    .mision-vision-grid {
+        grid-template-columns: 1fr;
+    }
+    .mision-title,
+    .vision-title {
+        font-size: 1.25rem;
+    }
+}
+
+  /* tabla */
+table {
+    border-collapse: collapse;
+    font-size: 0.95rem;
+}
+
+table thead th {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+table tbody tr {
+    transition: all 0.2s ease;
+}
+
+table tbody tr:hover {
+    background-color: rgba(249, 242, 224, 0.6);
+}
+
+table tbody td:first-child {
+    font-weight: 600;
+}
+
+.overflow-x-auto {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* ===== TESTIMONIOS ===== */
+
+#testimonios {
+    scroll-margin-top: 80px;
+}
+
+/* Tarjetas de testimonios */
+#testimonios .bg-white {
+    transition: all 0.3s ease;
+    border: 1px solid rgba(249, 242, 224, 0.5);
+}
+
+#testimonios .bg-white:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(30, 58, 47, 0.15);
+    border-color: var(--arama-rosa);
+}
+
+/* Iniciales del perfil */
+#testimonios .rounded-full {
+    font-weight: 700;
+    flex-shrink: 0;
+}
+
+/* Estrellas de calificación */
+#testimonios .text-arama-dorado {
+    color: var(--arama-dorado);
+}
+
+/* Texto del testimonio */
+#testimonios .italic {
+    font-style: italic;
+}
+
+.especialidades {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background: #ffe4e1;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    list-style-position: inside; /* Los números se muestran dentro del recuadro */
+}
+
+.especialidades li {
+    font-size: 1.2em;
+    margin: 12px 0;
+    padding: 8px;
+    border-bottom: 1px solid #f08080;
+    transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.especialidades li:hover {
+    background-color: #ffcccc;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+
+/* ===== RESPONSIVE ===== */
+
+/* Tablets y pantallas medianas */
+@media (max-width: 1024px) {
+    #testimonios .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* Móviles grandes */
+@media (max-width: 768px) {
+    #testimonios .grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.75rem;
+    }
+    
+    #testimonios .bg-white {
+        padding: 1rem;
+    }
+    
+    #testimonios .rounded-full {
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+    }
+    
+    #testimonios .font-bold.text-sm {
+        font-size: 0.8rem;
+    }
+    
+    #testimonios .text-xs {
+        font-size: 0.65rem;
+    }
+    
+    #testimonios .text-sm.italic {
+        font-size: 0.8rem;
+    }
+}
+
+/* Móviles pequeños */
+@media (max-width: 480px) {
+    #testimonios .grid {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
+    }
+    
+    #testimonios .bg-white {
+        padding: 0.875rem;
+    }
+    
+    #testimonios .rounded-full {
+        width: 36px;
+        height: 36px;
+        font-size: 0.7rem;
+    }
+    
+    #testimonios .font-bold.text-sm {
+        font-size: 0.75rem;
+    }
+    
+    #testimonios .text-sm.italic {
+        font-size: 0.8rem;
+    }
+}
+
+/* Tablets verticales */
+@media (min-width: 769px) and (max-width: 1024px) {
+    #testimonios .grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 640px) {
+    table {
+        font-size: 0.8rem;
+    }
+    table thead th,
+    table tbody td {
+        padding: 10px 8px;
+    }
+}
+
+  @media (max-width: 640px) {
+    .carousel-slide { height: 200px; }
+    .carousel-btn { width: 32px; height: 32px; font-size: 1.2rem; }
+    .carousel-btn.prev { left: 5px; }
+    .carousel-btn.next { right: 5px; }
+  }

@@ -1,0 +1,730 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>ARAMA Florería · Esencia floral</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="diseño.css">
+</head>
+<body class="antialiased">
+
+  <!--menu-->
+<header class="bg-arama-verde text-white shadow-lg sticky top-0 z-50">
+    <div class="container mx-auto px-4 py-3 flex flex-wrap items-center justify-between">
+        <a href="index.html" class="flex items-center gap-2 text-xl font-bold text-white">
+            <i class="fas fa-seedling text-arama-dorado"></i> 
+            <span>ARAMA</span>
+            <span class="hidden sm:inline text-[10px] bg-arama-dorado text-arama-verde px-2 py-0.5 rounded-full font-semibold">floreria</span>
+        </a>
+        <nav class="flex gap-4 text-sm">
+            <a href="#inicio" class="text-white hover:text-arama-dorado transition">Inicio</a>
+            <a href="#nosotros" class="text-white hover:text-arama-dorado transition">Nosotros</a>
+            <a href="#mision-vision"class="text-white hover:text-arama-dorado transition">Misión y visión</a>
+            <a href="#servicios" class="text-white hover:text-arama-dorado transition">Servicios</a>
+            <a href="#clientes" class="text-white hover:text-arama-dorado transition">Clientes</a>
+            <a href="#testimonios" class="text-white hover:text-arama-dorado transition">Testimonios</a>
+            <a href="#galeria" class="text-white hover:text-arama-dorado transition">Galería</a>
+            <a href="#contacto" class="text-white hover:text-arama-dorado transition">Contacto</a>
+        </nav>
+    </div>
+</header>
+
+  <main class="container mx-auto px-4 py-6 space-y-12">
+
+    <!--Inicio-->
+    <section id="inicio" class="scroll-mt-16">
+      <div class="bg-white/70 backdrop-blur-sm rounded-3xl p-6 md:p-10 floral-shadow border border-arama-dorado/30">
+        <div class="flex flex-col md:flex-row items-center gap-8">
+          <div class="flex-1">
+            <h1 class="text-4xl md:text-5xl font-bold text-arama-verde flex items-center gap-3">
+              <i class="fas fa-leaf text-arama-rosa"></i> ARAMA
+            </h1>
+            <p class="text-xl md:text-2xl text-arama-rosa font-light mt-2">Florería · Decoración de eventos</p>
+            <p class="text-gray-700 mt-4 max-w-xl">Más que flores, creamos emociones. Ramos, centros de mesa, decoración para bodas, eventos y cada ocasión especial.</p>
+            <div class="mt-6 flex flex-wrap gap-3">
+              <a href="#servicios" class="bg-arama-verde text-arama-crema px-6 py-2 rounded-full shadow hover:bg-arama-rosa transition">Nuestros servicios</a>
+              <a href="#contacto" class="border-2 border-arama-verde text-arama-verde px-6 py-2 rounded-full hover:bg-arama-verde hover:text-arama-crema transition">Contáctanos</a>
+            </div>
+          </div>
+          <div class="flex-1 flex justify-center">
+            <!-- imagen decorativa (simulada con iconos y colores) -->
+            <div class="grid grid-cols-2 gap-3 max-w-xs">
+              <div class="bg-arama-rosa/20 p-4 rounded-2xl text-center"><i class="fas fa-bouquet text-4xl text-arama-rosa"></i><span class="block text-xs">Ramos</span></div>
+              <div class="bg-arama-dorado/20 p-4 rounded-2xl text-center"><i class="fas fa-ring text-4xl text-arama-dorado"></i><span class="block text-xs">Novia</span></div>
+              <div class="bg-arama-verde/20 p-4 rounded-2xl text-center"><i class="fas fa-box text-4xl text-arama-verde"></i><span class="block text-xs">Cajas</span></div>
+              <div class="bg-arama-crema p-4 rounded-2xl text-center border border-arama-dorado"><i class="fas fa-glass-cheers text-4xl text-arama-rosa"></i><span class="block text-xs">Eventos</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+
+<!-- imagenes del carrusel -->
+<section class="py-4">
+  <div class="mt-4 carousel-container">
+    <div class="carousel-track" id="carouselTrack">
+      <img 
+        src="img/img1.jpeg" 
+        alt="Declaraciones" 
+        class="carousel-slide"
+      >
+      <img 
+        src="img/img2.jpeg" 
+        alt="Centro de mesa" 
+        class="carousel-slide"
+      >
+      <img 
+        src="img/img3.jpeg" 
+        alt="Arreglo floral" 
+        class="carousel-slide"
+      >
+      <img 
+        src="img/img4.jpeg" 
+        alt="Ramo de flores" 
+        class="carousel-slide"
+      >
+      <img 
+        src="img/img5.jpeg" 
+        alt="Decoración floral" 
+        class="carousel-slide"
+      >
+    </div>
+
+    <button class="carousel-btn prev" onclick="moveCarousel(-1)">‹</button>
+    <button class="carousel-btn next" onclick="moveCarousel(1)">›</button>
+  </div>
+
+  <div class="carousel-dots" id="carouselDots"></div>
+</section>
+
+<!--carrusel-->
+
+<script>
+  let currentSlide = 0;
+  const track = document.getElementById('carouselTrack');
+  const slides = track.querySelectorAll('.carousel-slide');
+  const totalSlides = slides.length;
+  const dotsContainer = document.getElementById('carouselDots');
+
+  
+  for (let i = 0; i < totalSlides; i++) {
+    const dot = document.createElement('button');
+    dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+    dot.setAttribute('data-index', i);
+    dot.addEventListener('click', () => goToSlide(i));
+    dotsContainer.appendChild(dot);
+  }
+
+  function updateCarousel() {
+    track.style.transform = `translateX(-${currentSlide * 100}%)`;
+  
+    document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+      dot.classList.toggle('active', index === currentSlide);
+    });
+  }
+
+  function moveCarousel(direction) {
+    currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+    updateCarousel();
+  }
+
+  function goToSlide(index) {
+    currentSlide = index;
+    updateCarousel();
+  }
+
+  
+  let autoplay = setInterval(() => moveCarousel(1), 4000);
+
+  // Pausar 
+  const container = document.querySelector('.carousel-container');
+  container.addEventListener('mouseenter', () => {
+    clearInterval(autoplay);
+  });
+  container.addEventListener('mouseleave', () => {
+    autoplay = setInterval(() => moveCarousel(1), 4000);
+  });
+
+  // cel (touch)
+  let touchStartX = 0;
+  let touchEndX = 0;
+
+  container.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0].screenX;
+  }, { passive: true });
+
+  container.addEventListener('touchend', (e) => {
+    touchEndX = e.changedTouches[0].screenX;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 50) {
+      moveCarousel(diff > 0 ? 1 : -1);
+    }
+  }, { passive: true });
+</script>
+
+
+
+    <!-- nosotros -->
+<section id="nosotros" class="scroll-mt-16">
+    <h2 class="text-3xl font-bold text-arama-verde border-b-4 border-arama-dorado inline-block pb-1 section-title">Sobre nosotros</h2>
+    
+    <div class="mt-4 grid md:grid-cols-2 gap-6 bg-white p-6 rounded-2xl shadow">
+        
+        <div class="flex flex-col justify-center">
+            <p class="text-gray-700 leading-relaxed">
+                <span class="font-bold text-arama-verde">ARAMA Florería</span> nace del amor por las flores y la naturaleza. Creamos arreglos únicos con esencia artesanal, combinando tradición y tendencias contemporáneas. Cada ramo cuenta una historia.
+            </p>
+            <ul class="list-disc list-inside mt-3 text-gray-700 space-y-1">
+                <li>🌸 Más de 10 años de experiencia</li>
+                <li>🌿 Flores frescas de origen local</li>
+                <li>🎨 Diseño personalizado para eventos</li>
+            </ul>
+          </div>
+        <div class="relative rounded-xl overflow-hidden bg-arama-crema flex items-center justify-center">
+            <img 
+                src="img/lo.jpeg" 
+                alt="ARAMA Florería" 
+                class="w-full h-64 object-cover"
+            >
+            <div class="absolute inset-0 flex items-center justify-center bg-black/30">
+                <p class="text-white font-serif italic text-2xl md:text-3xl text-center px-4">
+                    “Donde el amor,<br>se viste de flores”
+                </p>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+<!--misión y visión-->
+<section id="mision-vision" class="scroll-mt-16">
+    <h2 class="text-3xl font-bold text-arama-verde border-b-4 border-arama-dorado inline-block pb-1 section-title">Misión y Visión</h2>
+    
+    <div class="mision-vision-grid">
+        
+        <!-- Misión -->
+        <div class="mision-card">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="mision-icon">
+                    <i class="fas fa-bullseye"></i>
+                </div>
+                <h3 class="mision-title">Misión</h3>
+            </div>
+            <p class="mision-text">
+                Ofrecer arreglos florales de alta calidad que transmitan emociones y embellezcan cada momento, con un servicio cálido y personalizado que haga sentir a nuestros clientes la esencia y el amor que ponemos en cada creación.
+            </p>
+        </div>
+        
+        <!-- Visión -->
+        <div class="vision-card">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="vision-icon">
+                    <i class="fas fa-eye"></i>
+                </div>
+                <h3 class="vision-title">Visión</h3>
+            </div>
+            <p class="vision-text">
+                Ser la florería de referencia en diseño floral creativo en la región, reconocida por nuestra innovación, compromiso con la sostenibilidad y capacidad de transformar cada ocasión en un recuerdo inolvidable a través de la belleza de las flores.
+            </p>
+        </div>
+        
+    </div>
+</section>
+
+
+    <!--servicips -->
+<section id="servicios" class="scroll-mt-16">
+    <h2 class="text-3xl font-bold text-arama-verde border-b-4 border-arama-dorado inline-block pb-1 section-title">Servicios y Productos</h2>
+    
+    <div class="mt-4 grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        
+        <div class="bg-white p-5 rounded-2xl shadow card-hover border border-arama-crema">
+            <h3 class="text-xl font-bold text-arama-verde mt-2">Maxi Ramos</h3>
+            <p class="text-gray-600">Ramos de gran tamaño ideales para declaraciones y celebraciones.</p>
+        </div>
+        
+        <div class="bg-white p-5 rounded-2xl shadow card-hover border border-arama-crema">
+            <h3 class="text-xl font-bold text-arama-verde mt-2">Centros de Mesa</h3>
+            <p class="text-gray-600">Elegancia floral para bodas, banquetes y eventos corporativos.</p>
+        </div>
+       
+        <div class="bg-white p-5 rounded-2xl shadow card-hover border border-arama-crema">
+            <h3 class="text-xl font-bold text-arama-verde mt-2">Ramo de Novia</h3>
+            <p class="text-gray-600">Diseños exclusivos que complementan el vestido y la personalidad.</p>
+        </div>
+        
+        <div class="bg-white p-5 rounded-2xl shadow card-hover border border-arama-crema">
+            <h3 class="text-xl font-bold text-arama-verde mt-2">Cajas y Bouquet</h3>
+            <p class="text-gray-600">Presentaciones en caja, ramos en mano y arreglos sorpresa.</p>
+        </div>
+
+        <div class="bg-white p-5 rounded-2xl shadow card-hover border border-arama-crema">
+            <h3 class="text-xl font-bold text-arama-verde mt-2">Bases y Decoración</h3>
+            <p class="text-gray-600">Bases florales, guirnaldas y decoración para cualquier tipo de evento.</p>
+        </div>
+        
+        <div class="bg-white p-5 rounded-2xl shadow card-hover border border-arama-crema">
+            <h3 class="text-xl font-bold text-arama-verde mt-2">Eventos</h3>
+            <p class="text-gray-600">Decoración completa: bodas, XV años, baby showers, corporativos.</p>
+        </div>
+    </div>
+</section>
+
+<h5 class="text-3xl font-bold text-arama-verde border-b-4 border-arama-dorado inline-block pb-1 section-title">Especialidades de Florería ARAMA</h5>
+
+    <div class="flex gap-6 text-sm">
+        <ol class="list-decimal list-inside">
+            <li>Maxi ramos personalizados</li>
+            <li>Arreglos florales para bodas</li>
+            <li>Centros de mesa temáticos</li>
+            <li>Ramos exprés para ocasiones especiales</li>
+        </ol>
+    </div>
+
+    <!--tablas-->
+<section id="tabla-flores" class="scroll-mt-16">
+    <h2 class="text-3xl font-bold text-arama-verde border-b-4 border-arama-dorado inline-block pb-1 section-title">Flores</h2>
+    
+    <div class="mt-4 bg-white p-6 rounded-2xl shadow overflow-x-auto">
+        <table class="w-full border-collapse">
+            <thead>
+                <tr class="bg-arama-verde text-arama-crema">
+                    <th class="px-4 py-3 text-left rounded-tl-2xl">Flor</th>
+                    <th class="px-4 py-3 text-left">Temporada</th>
+                    <th class="px-4 py-3 text-left">Uso principal</th>
+                    <th class="px-4 py-3 text-left rounded-tr-2xl">Precio por docena</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="border-b border-arama-crema hover:bg-arama-crema/50 transition">
+                    <td class="px-4 py-3 font-medium text-arama-verde">Rosa</td>
+                    <td class="px-4 py-3">Todo el año</td>
+                    <td class="px-4 py-3">Ramos, centros de mesa</td>
+                    <td class="px-4 py-3 font-bold text-arama-rosa">$150</td>
+                </tr>
+                <tr class="border-b border-arama-crema hover:bg-arama-crema/50 transition">
+                    <td class="px-4 py-3 font-medium text-arama-verde">Tulipán</td>
+                    <td class="px-4 py-3">Primavera</td>
+                    <td class="px-4 py-3">Bouquets, arreglos elegantes</td>
+                    <td class="px-4 py-3 font-bold text-arama-rosa">$320</td>
+                </tr>
+                <tr class="border-b border-arama-crema hover:bg-arama-crema/50 transition">
+                    <td class="px-4 py-3 font-medium text-arama-verde">Girasol</td>
+                    <td class="px-4 py-3">Verano</td>
+                    <td class="px-4 py-3">Arreglos rústicos, eventos</td>
+                    <td class="px-4 py-3 font-bold text-arama-rosa">$180</td>
+                </tr>
+                <tr class="border-b border-arama-crema hover:bg-arama-crema/50 transition">
+                    <td class="px-4 py-3 font-medium text-arama-verde">Flor de cerezo</td>
+                    <td class="px-4 py-3">Primavera</td>
+                    <td class="px-4 py-3">Ramos de novia, decoración</td>
+                    <td class="px-4 py-3 font-bold text-arama-rosa">$290</td>
+                </tr>
+                <tr class="border-b border-arama-crema hover:bg-arama-crema/50 transition">
+                    <td class="px-4 py-3 font-medium text-arama-verde">Hortensia</td>
+                    <td class="px-4 py-3">Verano - Otoño</td>
+                    <td class="px-4 py-3">Centros de mesa, bodas</td>
+                    <td class="px-4 py-3 font-bold text-arama-rosa">$210</td>
+                </tr>
+                <tr class="hover:bg-arama-crema/50 transition">
+                    <td class="px-4 py-3 font-medium text-arama-verde">Margarita</td>
+                    <td class="px-4 py-3">Todo el año</td>
+                    <td class="px-4 py-3">Ramos, arreglos infantiles</td>
+                    <td class="px-4 py-3 font-bold text-arama-rosa">$150</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+    <!-- clientes -->
+<section id="clientes" class="scroll-mt-16">
+    <h2 class="text-3xl font-bold text-arama-verde border-b-4 border-arama-dorado inline-block pb-1 section-title">Clientes y Aliados</h2>
+    
+    <div class="mt-4 grid grid-cols-2 md:grid-cols-4 gap-4">
+        
+        <div class="relative group overflow-hidden rounded-2xl shadow bg-white h-32 cursor-pointer">
+            <div class="absolute inset-0 flex items-center justify-center bg-arama-crema transition-opacity duration-300 group-hover:opacity-0">
+                <i class="fas fa-handshake text-3xl text-arama-verde"></i>
+                <p class="text-sm font-medium ml-2">Salones Fiesta</p>
+            </div>
+            <img 
+                src="img/salon.jpeg" 
+                alt="Salones Fiesta" 
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            >
+        </div>
+        
+        <div class="relative group overflow-hidden rounded-2xl shadow bg-white h-32 cursor-pointer">
+            <div class="absolute inset-0 flex items-center justify-center bg-arama-crema transition-opacity duration-300 group-hover:opacity-0">
+                <i class="fas fa-hotel text-3xl text-arama-dorado"></i>
+                <p class="text-sm font-medium ml-2">Hoteles</p>
+            </div>
+            <img 
+                src="img/hotel.jpeg" 
+                alt="Hoteles" 
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            >
+        </div>
+        
+        <div class="relative group overflow-hidden rounded-2xl shadow bg-white h-32 cursor-pointer">
+            <div class="absolute inset-0 flex items-center justify-center bg-arama-crema transition-opacity duration-300 group-hover:opacity-0">
+                <i class="fas fa-church text-3xl text-arama-rosa"></i>
+                <p class="text-sm font-medium ml-2">Iglesias</p>
+            </div>
+            <img 
+                src="img/iglesia.jpeg" 
+                alt="Iglesias" 
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            >
+        </div>
+       
+        <div class="relative group overflow-hidden rounded-2xl shadow bg-white h-32 cursor-pointer">
+            <div class="absolute inset-0 flex items-center justify-center bg-arama-crema transition-opacity duration-300 group-hover:opacity-0">
+                <i class="fas fa-users text-3xl text-arama-verde"></i>
+                <p class="text-sm font-medium ml-2">Eventos privados</p>
+            </div>
+            <img 
+                src="img/priv.jpeg" 
+                alt="Eventos privados" 
+                class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110"
+            >
+        </div>
+        
+    </div>
+</section>
+
+<!--testimonios/casos de exito-->
+<section id="testimonios" class="scroll-mt-16">
+    <h2 class="text-3xl font-bold text-arama-verde border-b-4 border-arama-dorado inline-block pb-1 section-title">Testimonios</h2>
+    
+    <div class="mt-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        
+        <!-- Testimonio 1 -->
+        <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition duration-300">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 rounded-full bg-arama-rosa/30 flex items-center justify-center text-arama-rosa text-lg font-bold border-2 border-arama-rosa flex-shrink-0">
+                    LG
+                </div>
+                <div>
+                    <p class="font-bold text-arama-verde text-sm">Laura G.</p>
+                    <p class="text-xs text-gray-500">Novia · Boda 2025</p>
+                </div>
+            </div>
+            <p class="text-gray-700 text-sm italic leading-relaxed">
+                "El ramo de novia superó mis sueños, perfecto y delicado. ARAMA hizo mágico mi día."
+            </p>
+            <div class="flex gap-0.5 mt-2 text-arama-dorado text-xs">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+        
+        <!-- Testimonio 2 -->
+        <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition duration-300">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 rounded-full bg-arama-dorado/30 flex items-center justify-center text-arama-dorado text-lg font-bold border-2 border-arama-dorado flex-shrink-0">
+                    CM
+                </div>
+                <div>
+                    <p class="font-bold text-arama-verde text-sm">Carlos M.</p>
+                    <p class="text-xs text-gray-500">Gerente · Evento corporativo</p>
+                </div>
+            </div>
+            <p class="text-gray-700 text-sm italic leading-relaxed">
+                "Decoración impecable para nuestro evento corporativo. Todos quedaron fascinados con los centros de mesa."
+            </p>
+            <div class="flex gap-0.5 mt-2 text-arama-dorado text-xs">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+        
+        <!-- Testimonio 3 -->
+        <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition duration-300">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 rounded-full bg-arama-verde/30 flex items-center justify-center text-arama-verde text-lg font-bold border-2 border-arama-verde flex-shrink-0">
+                    VR
+                </div>
+                <div>
+                    <p class="font-bold text-arama-verde text-sm">Valeria R.</p>
+                    <p class="text-xs text-gray-500">Quinceañera · 2025</p>
+                </div>
+            </div>
+            <p class="text-gray-700 text-sm italic leading-relaxed">
+                "Contraté a ARAMA para mi XV años y fue increíble. Las flores frescas y el diseño superó mis expectativas."
+            </p>
+            <div class="flex gap-0.5 mt-2 text-arama-dorado text-xs">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+        
+        <!-- Testimonio 4 -->
+        <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition duration-300">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 rounded-full bg-arama-rosa/30 flex items-center justify-center text-arama-rosa text-lg font-bold border-2 border-arama-rosa flex-shrink-0">
+                    FH
+                </div>
+                <div>
+                    <p class="font-bold text-arama-verde text-sm">Fernando H.</p>
+                    <p class="text-xs text-gray-500">Cliente frecuente</p>
+                </div>
+            </div>
+            <p class="text-gray-700 text-sm italic leading-relaxed">
+                "Los ramos de ARAMA son una obra de arte. Mi esposa no pudo estar más feliz. Volveré a comprar."
+            </p>
+            <div class="flex gap-0.5 mt-2 text-arama-dorado text-xs">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+        
+        <!-- Testimonio 5 -->
+        <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition duration-300">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 rounded-full bg-arama-dorado/30 flex items-center justify-center text-arama-dorado text-lg font-bold border-2 border-arama-dorado flex-shrink-0">
+                    HR
+                </div>
+                <div>
+                    <p class="font-bold text-arama-verde text-sm">Hotel Royal</p>
+                    <p class="text-xs text-gray-500">Aliado estratégico</p>
+                </div>
+            </div>
+            <p class="text-gray-700 text-sm italic leading-relaxed">
+                "Trabajamos con ARAMA para la decoración de nuestro hotel. Siempre puntuales y con flores de la mejor calidad."
+            </p>
+            <div class="flex gap-0.5 mt-2 text-arama-dorado text-xs">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+        
+        <!-- Testimonio 6 (extra) -->
+        <div class="bg-white p-5 rounded-2xl shadow hover:shadow-lg transition duration-300">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-12 h-12 rounded-full bg-arama-verde/30 flex items-center justify-center text-arama-verde text-lg font-bold border-2 border-arama-verde flex-shrink-0">
+                    MR
+                </div>
+                <div>
+                    <p class="font-bold text-arama-verde text-sm">María R.</p>
+                    <p class="text-xs text-gray-500">Cliente · 2025</p>
+                </div>
+            </div>
+            <p class="text-gray-700 text-sm italic leading-relaxed">
+                "Excelente servicio y calidad. Los arreglos florales de ARAMA son únicos, siempre recibo cumplidos cuando los regalo."
+            </p>
+            <div class="flex gap-0.5 mt-2 text-arama-dorado text-xs">
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+                <i class="fas fa-star"></i>
+            </div>
+        </div>
+        
+    </div>
+</section>
+
+
+    <!-- img -->
+    <section id="galeria" class="scroll-mt-16">
+    <h2 class="text-3xl font-bold text-arama-verde border-b-4 border-arama-dorado inline-block pb-1 section-title">Galería</h2>
+    
+   
+    <div class="mt-4 grid grid-cols-2 md:grid-cols-3 gap-4">
+        
+        <a href="galeria.html#categoria-ramos" 
+           class="bg-arama-rosa/20 h-28 rounded-2xl flex items-center justify-center text-arama-rosa hover:scale-105 transition duration-300">
+            <i class="fas fa-image text-4xl"></i>
+            <span class="ml-2">Ramos</span>
+        </a>
+        
+        <a href="galeria.html#categoria-centros" 
+           class="bg-arama-dorado/20 h-28 rounded-2xl flex items-center justify-center text-arama-dorado hover:scale-105 transition duration-300">
+            <i class="fas fa-image text-4xl"></i>
+            <span class="ml-2">Centros</span>
+        </a>
+        
+        <a href="galeria.html#categoria-novias" 
+           class="bg-arama-verde/20 h-28 rounded-2xl flex items-center justify-center text-arama-verde hover:scale-105 transition duration-300">
+            <i class="fas fa-image text-4xl"></i>
+            <span class="ml-2">Novias</span>
+        </a>
+        
+        <a href="galeria.html#categoria-cajas" 
+           class="bg-arama-crema border h-28 rounded-2xl flex items-center justify-center text-arama-verde hover:scale-105 transition duration-300">
+            <i class="fas fa-image text-4xl"></i>
+            <span class="ml-2">Cajas</span>
+        </a>
+        
+        <a href="galeria.html#categoria-eventos" 
+           class="bg-arama-rosa/30 h-28 rounded-2xl flex items-center justify-center text-arama-rosa hover:scale-105 transition duration-300">
+            <i class="fas fa-image text-4xl"></i>
+            <span class="ml-2">Eventos</span>
+        </a>
+        
+        <a href="galeria.html#categoria-bouquet" 
+           class="bg-arama-dorado/30 h-28 rounded-2xl flex items-center justify-center text-arama-dorado hover:scale-105 transition duration-300">
+            <i class="fas fa-image text-4xl"></i>
+            <span class="ml-2">Bouquet</span>
+        </a>
+        
+    </div>
+</section>
+
+
+<!--videos iframe-->
+<div class="relative pb-[56.25%] h-0 rounded-xl overflow-hidden">
+    <iframe 
+        class="absolute top-0 left-0 w-full h-full"
+        src="https://www.youtube.com/embed/32KIWRg98Vk" 
+        title="Video destacado"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen
+    ></iframe>
+</div>
+
+  <!--contacto-->
+<section id="contacto" class="scroll-mt-16">
+    <h2 class="text-3xl font-bold text-arama-verde border-b-4 border-arama-dorado inline-block pb-1 section-title">Contacto</h2>
+    
+    <div class="mt-4 grid lg:grid-cols-2 gap-6">
+        
+        <!-- formulario -->
+        <div class="bg-white p-6 rounded-2xl shadow">
+            <h3 class="text-xl font-bold text-arama-verde">Envíanos un mensaje</h3>
+            
+            <form class="mt-4 space-y-4" action="https://formsubmit.co/arlethbecerrilmiranda123@gmail.com" method="POST">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="_template" value="table">
+                <input type="hidden" name="_subject" value="Nuevo mensaje desde ARAMA Florería">
+                
+                <div class="grid sm:grid-cols-3 gap-3">
+                    <input type="text" name="Nombre" placeholder="Nombre" class="border border-gray-300 rounded-xl px-4 py-2 w-full focus:border-arama-rosa outline-none" required>
+                    <input type="text" name="Apellido Paterno" placeholder="Apellido paterno" class="border border-gray-300 rounded-xl px-4 py-2 w-full focus:border-arama-rosa outline-none" required>
+                    <input type="text" name="Apellido Materno" placeholder="Apellido materno" class="border border-gray-300 rounded-xl px-4 py-2 w-full focus:border-arama-rosa outline-none">
+                </div>
+                
+                <input type="email" name="Correo" placeholder="Correo electrónico" class="border border-gray-300 rounded-xl px-4 py-2 w-full focus:border-arama-rosa outline-none" required>
+                
+                <textarea rows="4" name="Mensaje" placeholder="Mensaje / Opinión" class="border border-gray-300 rounded-xl px-4 py-2 w-full focus:border-arama-rosa outline-none" required></textarea>
+                
+                <button type="submit" class="bg-arama-verde text-arama-crema px-8 py-2 rounded-full hover:bg-arama-rosa transition shadow">
+                    <i class="fas fa-paper-plane mr-2"></i>Enviar por Gmail
+                </button>
+            </form>
+        </div>
+
+        <div class="space-y-4">
+            
+            <!-- Mapa -->
+            <div class="bg-white p-4 rounded-2xl shadow">
+                <h4 class="font-bold text-arama-verde">
+                    <i class="fas fa-map-pin mr-2"></i>Ubicación
+                </h4>
+                <iframe 
+                    src="https://www.google.com/maps?q=Cecytem+Jilotepec+Estado+de+M%C3%A9xico&z=15&output=embed" 
+                    width="100%" 
+                    height="180" 
+                    style="border:0; border-radius: 12px;" 
+                    allowfullscreen="" 
+                    loading="lazy"
+                ></iframe>
+                <div class="mt-2 text-xs text-gray-600 flex items-center gap-2">
+                    <i class="fas fa-location-dot text-arama-rosa"></i>
+                    <span>CECYTEM Plantel Jilotepec, Estado de México</span>
+                </div>
+            </div>
+            
+            <!-- Redes Sociales -->
+            <div class="bg-white p-4 rounded-2xl shadow flex flex-wrap gap-4 items-center justify-around">
+                <a href="https://www.instagram.com/aramafloreria?igsh=MXBxa3dqMmtwOXRnZg==" 
+                   class="text-2xl text-arama-verde hover:text-arama-rosa transition" 
+                   target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.facebook.com/share/1FdcioezzJ/" 
+                   class="text-2xl text-arama-verde hover:text-arama-rosa transition" 
+                   target="_blank">
+                    <i class="fab fa-facebook"></i>
+                </a>
+                <a href="https://www.tiktok.com/@arama.floreria.ji?_r=1&_t=ZS-987KNdvQJoC" 
+                   class="text-2xl text-arama-verde hover:text-arama-rosa transition" 
+                   target="_blank">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+                <a href="mailto:aramafloreria@gmail.com" 
+                   class="text-arama-dorado hover:text-arama-rosa transition text-sm flex items-center gap-1">
+                    <i class="fas fa-envelope"></i> Gmail
+                </a>
+            </div>
+            
+        </div> 
+        
+    </div> 
+</section> 
+
+</main>
+
+<footer class="bg-arama-verde text-white mt-10 py-8">
+
+  <!-- Aviso de privacidad -->
+  <section id="privacidad" class="scroll-mt-16">
+    <div class="bg-arama-verde/20 p-6 rounded-2xl border border-arama-dorado/40">
+      <h3 class="text-2xl font-bold flex items-center gap-2">
+        <i class="fas fa-shield-alt text-arama-dorado"></i> Aviso de privacidad
+      </h3>
+      <p class="text-sm mt-2">
+        ARAMA Florería protege tus datos personales. La información recabada se utiliza únicamente para atención de pedidos y comunicación. No compartimos datos con terceros. 
+        <a href="#" class="text-arama-rosa underline">Términos legales</a>.
+      </p>
+      <div class="mt-3 flex flex-wrap gap-4 text-xs">
+        <span><i class="fas fa-check text-arama-dorado"></i> Responsable: ARAMA Florería</span>
+        <span><i class="fas fa-check text-arama-dorado"></i> Última actualización: 2026</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-3 mt-6">
+    
+    <div class="flex items-center gap-2">
+      <i class="fas fa-seedling text-arama-dorado text-xl"></i>
+      <span class="font-bold">ARAMA Florería</span>
+      <span class="text-xs bg-arama-dorado/30 px-2 py-0.5 rounded-full">Donde el amor, se viste de flores</span>
+    </div>
+    
+    <!-- Redes sociales -->
+    <div class="flex gap-6 text-sm">
+      <a href="https://www.instagram.com/aramafloreria?igsh=MXBxa3dqMmtwOXRnZg==" class="hover:text-arama-dorado">Instagram</a>
+      <a href="https://www.facebook.com/share/1FdcioezzJ/" class="hover:text-arama-dorado">Facebook</a>
+      <a href="https://www.tiktok.com/@arama.floreria.ji?_r=1&_t=ZS-987KNdvQJoC" class="hover:text-arama-dorado">Tik Tok</a>
+      <a href="mailto:aramafloreria@gmail.com" class="hover:text-arama-dorado">Gmail</a>
+    </div>
+    
+    <!-- Derechos reservados -->
+    <div class="text-xs opacity-70">
+
+</body>
+</html>
