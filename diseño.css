@@ -240,6 +240,66 @@ table tbody td:first-child {
     border-color: var(--arama-rosa);
 }
 
+/* ===== LISTA ORDENADA ===== */
+#especialidades ol {
+    counter-reset: item;
+    list-style: none;
+    padding-left: 0;
+}
+
+#especialidades ol li {
+    counter-increment: item;
+    padding: 0.6rem 0.8rem 0.6rem 3rem;
+    position: relative;
+    border-bottom: 1px solid rgba(249, 242, 224, 0.5);
+    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+}
+
+#especialidades ol li:hover {
+    background-color: rgba(249, 242, 224, 0.3);
+    padding-left: 3.5rem;
+}
+
+#especialidades ol li:last-child {
+    border-bottom: none;
+}
+
+#especialidades ol li::before {
+    content: counter(item);
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 28px;
+    height: 28px;
+    background: var(--arama-verde);
+    color: var(--arama-crema);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
+#especialidades ol li:hover::before {
+    background: var(--arama-rosa);
+    transform: translateY(-50%) scale(1.1);
+}
+
+@media (max-width: 640px) {
+    #especialidades ol li {
+        padding: 0.5rem 0.5rem 0.5rem 2.5rem;
+        font-size: 0.85rem;
+    }
+    #especialidades ol li::before {
+        width: 22px;
+        height: 22px;
+        font-size: 0.65rem;
+    }
+}
+
 /* ===== RESPONSIVE ===== */
 @media (max-width: 1024px) {
     #testimonios .grid {
