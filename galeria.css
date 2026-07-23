@@ -235,29 +235,20 @@ body {
     }
 }
 
-/* ===== MENÚ HAMBURGUESA - ajustes para móvil ===== */
-@media (max-width: 767px) {
-    /* Botón más grande y visible */
+/* ===== MENÚ HAMBURGUESA - Ajustes adicionales ===== */
+/* El botón se muestra por defecto en móviles, oculto en desktop mediante la clase md:hidden de Tailwind */
+/* Pero agregamos un respaldo por si Tailwind no carga */
+@media (min-width: 768px) {
     #menuBtn {
-        font-size: 2.2rem !important;
-        padding: 0.5rem 0.75rem !important;
+        display: none !important;
     }
+}
 
-    /* Menú desplegable mejorado */
-    #navMenu {
-        background-color: var(--arama-verde);
-        border-bottom: 3px solid var(--arama-dorado);
-        border-top-left-radius: 0;
-        border-top-right-radius: 0;
-    }
+/* Aseguramos que el menú se vea bien en móvil */
+#navMenu {
+    transition: all 0.3s ease;
+}
 
-    #navMenu a {
-        font-size: 1rem;
-        padding: 0.8rem 1rem;
-        border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-
-    #navMenu a:last-child {
-        border-bottom: none;
-    }
+#navMenu a {
+    transition: background 0.2s;
 }
