@@ -239,3 +239,11 @@ body {
         height: 180px;
     }
 }
+
+/* ===== MENÚ HAMBURGUESA - ajuste móvil ===== */
+@media (max-width: 767px) {
+    #navMenu {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+    }
+}

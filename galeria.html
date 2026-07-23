@@ -10,18 +10,30 @@
 </head>
 <body>
 
-    <!-- ===== HEADER - IGUAL AL INDEX ===== -->
+    <!-- ===== HEADER CON MENÚ HAMBURGUESA ===== -->
     <header class="bg-arama-verde text-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-3 md:px-4 py-2 md:py-3">
-            <div class="flex flex-wrap items-center justify-between">
+            <div class="flex items-center justify-between">
+                <!-- Logo -->
                 <a href="index.html" class="flex items-center gap-2 text-lg md:text-xl font-bold text-white">
                     <i class="fas fa-seedling text-arama-dorado text-xl md:text-2xl"></i> 
                     <span>ARAMA</span>
                     <span class="hidden sm:inline text-[8px] md:text-[10px] bg-arama-dorado text-arama-verde px-1.5 md:px-2 py-0.5 rounded-full font-semibold">floreria</span>
                 </a>
-                <nav class="flex gap-3 md:gap-4 text-xs md:text-sm">
-                    <a href="index.html" class="text-white hover:text-arama-dorado transition">Inicio</a>
-                    <a href="index.html#contacto" class="text-white hover:text-arama-dorado transition">Contacto</a>
+
+                <!-- Botón hamburguesa (solo móvil) -->
+                <button id="menuBtn" class="md:hidden text-white text-2xl focus:outline-none">
+                    <i id="menuIcon" class="fas fa-bars"></i>
+                </button>
+
+                <!-- Menú de navegación -->
+                <nav id="navMenu" class="hidden md:flex w-full md:w-auto absolute md:static left-0 top-full bg-arama-verde md:bg-transparent p-4 md:p-0 rounded-b-2xl md:rounded-none shadow-lg md:shadow-none z-50">
+                    <div class="flex flex-col md:flex-row gap-1.5 md:gap-4 text-[10px] md:text-sm">
+                        <a href="index.html" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-1">Inicio</a>
+                        <a href="index.html#contacto" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-1">Contacto</a>
+                        <!-- Opcional: enlace a la misma galería -->
+                        <a href="#galeria" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-1">Galería</a>
+                    </div>
                 </nav>
             </div>
         </div>
@@ -222,6 +234,7 @@
 
     <!-- ===== JAVASCRIPT ===== -->
     <script>
+        // Modal
         function openModal(src) {
             const modal = document.getElementById('imageModal');
             const modalImg = document.getElementById('modalImage');
@@ -240,6 +253,17 @@
             if (e.key === 'Escape') {
                 closeModal();
             }
+        });
+
+        // Menú hamburguesa
+        const menuBtn = document.getElementById('menuBtn');
+        const navMenu = document.getElementById('navMenu');
+        const menuIcon = document.getElementById('menuIcon');
+
+        menuBtn.addEventListener('click', () => {
+            navMenu.classList.toggle('hidden');
+            menuIcon.classList.toggle('fa-bars');
+            menuIcon.classList.toggle('fa-times');
         });
     </script>
 
