@@ -344,6 +344,7 @@ table tbody td:first-child {
         padding: 8px 10px;
     }
 }
+
 @media (max-width: 480px) {
     .carousel-slide {
         height: 160px !important;
@@ -367,5 +368,23 @@ table tbody td:first-child {
     #navMenu {
         border-top-left-radius: 0;
         border-top-right-radius: 0;
+    }
+    /* Asegurar que el botón sea grande y visible */
+    #menuBtn {
+        font-size: 1.8rem;
+        padding: 0.5rem 0.75rem;
+    }
+    /* Mejorar el menú desplegable en móvil */
+    #navMenu {
+        background-color: var(--arama-verde);
+        border-bottom: 3px solid var(--arama-dorado);
+    }
+    #navMenu a {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+    #navMenu a:last-child {
+        border-bottom: none;
     }
 }

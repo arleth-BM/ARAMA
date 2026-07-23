@@ -235,10 +235,29 @@ body {
     }
 }
 
-/* ===== MENÚ HAMBURGUESA - ajuste móvil ===== */
+/* ===== MENÚ HAMBURGUESA - ajustes para móvil ===== */
 @media (max-width: 767px) {
+    /* Botón más grande y visible */
+    #menuBtn {
+        font-size: 2.2rem !important;
+        padding: 0.5rem 0.75rem !important;
+    }
+
+    /* Menú desplegable mejorado */
     #navMenu {
+        background-color: var(--arama-verde);
+        border-bottom: 3px solid var(--arama-dorado);
         border-top-left-radius: 0;
         border-top-right-radius: 0;
+    }
+
+    #navMenu a {
+        font-size: 1rem;
+        padding: 0.8rem 1rem;
+        border-bottom: 1px solid rgba(255,255,255,0.1);
+    }
+
+    #navMenu a:last-child {
+        border-bottom: none;
     }
 }

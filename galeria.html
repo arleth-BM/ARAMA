@@ -10,7 +10,7 @@
 </head>
 <body>
 
-    <!-- ===== HEADER CON MENÚ HAMBURGUESA ===== -->
+    <!-- ===== HEADER CON MENÚ HAMBURGUESA CORREGIDO ===== -->
     <header class="bg-arama-verde text-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-3 md:px-4 py-2 md:py-3">
             <div class="flex items-center justify-between">
@@ -21,21 +21,21 @@
                     <span class="hidden sm:inline text-[8px] md:text-[10px] bg-arama-dorado text-arama-verde px-1.5 md:px-2 py-0.5 rounded-full font-semibold">floreria</span>
                 </a>
 
-                <!-- Botón hamburguesa (solo móvil) -->
-                <button id="menuBtn" class="md:hidden text-white text-2xl focus:outline-none">
+                <!-- Botón hamburguesa (visible en móviles) -->
+                <button id="menuBtn" class="text-white text-3xl md:hidden focus:outline-none p-2">
                     <i id="menuIcon" class="fas fa-bars"></i>
                 </button>
 
-                <!-- Menú de navegación -->
+                <!-- Menú de navegación (oculto por defecto en móviles) -->
                 <nav id="navMenu" class="hidden md:flex w-full md:w-auto absolute md:static left-0 top-full bg-arama-verde md:bg-transparent p-4 md:p-0 rounded-b-2xl md:rounded-none shadow-lg md:shadow-none z-50">
-                    <div class="flex flex-col md:flex-row gap-1.5 md:gap-4 text-[10px] md:text-sm">
-                        <a href="index.html" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-1">Inicio</a>
-                        <a href="index.html#nosotros" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-1">Nosotros</a>
-                        <a href="index.html#mision-vision" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-1">Misión y Visión</a>
-                        <a href="index.html#servicios" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-1">Servicios</a>
-                        <a href="index.html#clientes" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-1">Clientes</a>
-                        <a href="#galeria" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-1">Galería</a>
-                        <a href="index.html#contacto" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-1">Contacto</a>
+                    <div class="flex flex-col md:flex-row gap-1.5 md:gap-4 text-sm md:text-sm">
+                        <a href="index.html" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1 border-b border-white/10 md:border-none">Inicio</a>
+                        <a href="index.html#nosotros" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1 border-b border-white/10 md:border-none">Nosotros</a>
+                        <a href="index.html#mision-vision" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1 border-b border-white/10 md:border-none">Misión y Visión</a>
+                        <a href="index.html#servicios" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1 border-b border-white/10 md:border-none">Servicios</a>
+                        <a href="index.html#clientes" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1 border-b border-white/10 md:border-none">Clientes</a>
+                        <a href="#galeria" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1 border-b border-white/10 md:border-none">Galería</a>
+                        <a href="index.html#contacto" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1">Contacto</a>
                     </div>
                 </nav>
             </div>
@@ -236,16 +236,18 @@
             }
         });
 
-        // Menú hamburguesa
+        // Menú hamburguesa (corregido)
         const menuBtn = document.getElementById('menuBtn');
         const navMenu = document.getElementById('navMenu');
         const menuIcon = document.getElementById('menuIcon');
 
-        menuBtn.addEventListener('click', () => {
-            navMenu.classList.toggle('hidden');
-            menuIcon.classList.toggle('fa-bars');
-            menuIcon.classList.toggle('fa-times');
-        });
+        if (menuBtn && navMenu && menuIcon) {
+            menuBtn.addEventListener('click', function() {
+                navMenu.classList.toggle('hidden');
+                menuIcon.classList.toggle('fa-bars');
+                menuIcon.classList.toggle('fa-times');
+            });
+        }
     </script>
 
 </body>
