@@ -344,7 +344,6 @@ table tbody td:first-child {
         padding: 8px 10px;
     }
 }
-
 @media (max-width: 480px) {
     .carousel-slide {
         height: 160px !important;

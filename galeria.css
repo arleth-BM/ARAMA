@@ -154,8 +154,6 @@ body {
 }
 
 /* ===== RESPONSIVE ===== */
-
-/* Tablets */
 @media (max-width: 1024px) {
     .category-card {
         height: 160px;
@@ -168,7 +166,6 @@ body {
     }
 }
 
-/* Móviles grandes */
 @media (max-width: 768px) {
     .category-card {
         height: 130px;
@@ -198,7 +195,6 @@ body {
     }
 }
 
-/* Móviles pequeños */
 @media (max-width: 480px) {
     .category-card {
         height: 100px;
@@ -233,7 +229,6 @@ body {
     }
 }
 
-/* Tablets verticales */
 @media (min-width: 769px) and (max-width: 1024px) {
     .category-card {
         height: 180px;
