@@ -10,7 +10,7 @@
 </head>
 <body class="antialiased bg-arama-crema">
 
-    <!-- ===== HEADER CON MENÚ HAMBURGUESA CORREGIDO ===== -->
+    <!-- ===== HEADER CON MENÚ HAMBURGUESA ===== -->
     <header class="bg-arama-verde text-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-3 md:px-4 py-2 md:py-3">
             <div class="flex items-center justify-between">
@@ -21,22 +21,20 @@
                     <span class="hidden sm:inline text-[8px] md:text-[10px] bg-arama-dorado text-arama-verde px-1.5 md:px-2 py-0.5 rounded-full font-semibold">floreria</span>
                 </a>
 
-                <!-- Botón hamburguesa (visible en móviles) -->
-                <button id="menuBtn" class="text-white text-3xl md:hidden focus:outline-none p-2">
-                    <i id="menuIcon" class="fas fa-bars"></i>
+                <!-- Botón hamburguesa -->
+                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
+                    <i class="fas fa-bars"></i>
                 </button>
 
-                <!-- Menú de navegación (oculto por defecto en móviles) -->
-                <nav id="navMenu" class="hidden md:flex w-full md:w-auto absolute md:static left-0 top-full bg-arama-verde md:bg-transparent p-4 md:p-0 rounded-b-2xl md:rounded-none shadow-lg md:shadow-none z-50">
-                    <div class="flex flex-col md:flex-row gap-1.5 md:gap-4 text-sm md:text-sm">
-                        <a href="#inicio" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1 border-b border-white/10 md:border-none">Inicio</a>
-                        <a href="#nosotros" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1 border-b border-white/10 md:border-none">Nosotros</a>
-                        <a href="#mision-vision" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1 border-b border-white/10 md:border-none">Misión y Visión</a>
-                        <a href="#servicios" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1 border-b border-white/10 md:border-none">Servicios</a>
-                        <a href="#clientes" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1 border-b border-white/10 md:border-none">Clientes</a>
-                        <a href="#galeria" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1 border-b border-white/10 md:border-none">Galería</a>
-                        <a href="#contacto" class="text-white hover:text-arama-dorado transition px-1.5 md:px-0 py-2 md:py-1">Contacto</a>
-                    </div>
+                <!-- Menú de navegación -->
+                <nav class="navbar-menu" id="navbarMenu">
+                    <a href="#inicio">Inicio</a>
+                    <a href="#nosotros">Nosotros</a>
+                    <a href="#mision-vision">Misión y Visión</a>
+                    <a href="#servicios">Servicios</a>
+                    <a href="#clientes">Clientes</a>
+                    <a href="#galeria">Galería</a>
+                    <a href="#contacto">Contacto</a>
                 </nav>
             </div>
         </div>
@@ -455,9 +453,8 @@
         </div>
     </footer>
 
-    <!--carrusel y menú hamburguesa-->
     <script>
-        // Carrusel
+        // ===== CARRUSEL =====
         let currentSlide = 0;
         const track = document.getElementById('carouselTrack');
         const slides = track.querySelectorAll('.carousel-slide');
@@ -503,16 +500,46 @@
             if (Math.abs(diff) > 50) moveCarousel(diff > 0 ? 1 : -1);
         }, { passive: true });
 
-        // Menú hamburguesa (corregido)
-        const menuBtn = document.getElementById('menuBtn');
-        const navMenu = document.getElementById('navMenu');
-        const menuIcon = document.getElementById('menuIcon');
+        // ===== MENÚ HAMBURGUESA =====
+        const menuToggle = document.getElementById('menuToggle');
+        const navbarMenu = document.getElementById('navbarMenu');
 
-        if (menuBtn && navMenu && menuIcon) {
-            menuBtn.addEventListener('click', function() {
-                navMenu.classList.toggle('hidden');
-                menuIcon.classList.toggle('fa-bars');
-                menuIcon.classList.toggle('fa-times');
+        if (menuToggle && navbarMenu) {
+            menuToggle.addEventListener('click', function(e) {
+                e.stopPropagation();
+                navbarMenu.classList.toggle('abierto');
+                const icon = this.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                }
+            });
+
+            // Cerrar al hacer clic en un enlace
+            navbarMenu.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    navbarMenu.classList.remove('abierto');
+                    const icon = menuToggle.querySelector('i');
+                    if (icon) {
+                        icon.classList.add('fa-bars');
+                        icon.classList.remove('fa-times');
+                    }
+                });
+            });
+
+            // Cerrar al hacer clic fuera del menú (en móvil)
+            document.addEventListener('click', function(e) {
+                if (window.innerWidth <= 767) {
+                    const isClickInside = navbarMenu.contains(e.target) || menuToggle.contains(e.target);
+                    if (!isClickInside && navbarMenu.classList.contains('abierto')) {
+                        navbarMenu.classList.remove('abierto');
+                        const icon = menuToggle.querySelector('i');
+                        if (icon) {
+                            icon.classList.add('fa-bars');
+                            icon.classList.remove('fa-times');
+                        }
+                    }
+                }
             });
         }
     </script>
