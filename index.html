@@ -10,7 +10,7 @@
 </head>
 <body class="antialiased bg-arama-crema">
 
-    <!-- ===== HEADER CON MENÚ HAMBURGUESA ===== -->
+    <!-- ===== HEADER CON MENÚ HAMBURGUESA (CHECKBOX) ===== -->
     <header class="bg-arama-verde text-white shadow-lg sticky top-0 z-50">
         <div class="container mx-auto px-3 md:px-4 py-2 md:py-3">
             <div class="flex items-center justify-between">
@@ -21,13 +21,14 @@
                     <span class="hidden sm:inline text-[8px] md:text-[10px] bg-arama-dorado text-arama-verde px-1.5 md:px-2 py-0.5 rounded-full font-semibold">floreria</span>
                 </a>
 
-                <!-- Botón hamburguesa -->
-                <button class="menu-toggle" id="menuToggle" aria-label="Menú">
-                    <i class="fas fa-bars">ham</i>
-                </button>
+                <!-- Checkbox oculto para controlar el menú -->
+                <input type="checkbox" id="menuToggle" class="hidden menu-checkbox">
+                <label for="menuToggle" class="menu-toggle-label md:hidden text-2xl cursor-pointer">
+                    <i class="fas fa-bars"></i>
+                </label>
 
                 <!-- Menú de navegación -->
-                <nav class="navbar-menu" id="navbarMenu">
+                <nav class="navbar-menu">
                     <a href="#inicio">Inicio</a>
                     <a href="#nosotros">Nosotros</a>
                     <a href="#mision-vision">Misión y Visión</a>
@@ -71,7 +72,7 @@
 
         <!-- Carrusel -->
         <section class="py-2 md:py-4">
-            <div class="carousel-container">
+            <div class="carousel-container" id="carouselContainer">
                 <div class="carousel-track" id="carouselTrack">
                     <img src="img/img1.jpeg" alt="Declaraciones" class="carousel-slide">
                     <img src="img/img2.jpeg" alt="Centro de mesa" class="carousel-slide">
@@ -453,96 +454,84 @@
         </div>
     </footer>
 
+    <!-- ===== SCRIPTS ===== -->
     <script>
         // ===== CARRUSEL =====
-        let currentSlide = 0;
-        const track = document.getElementById('carouselTrack');
-        const slides = track.querySelectorAll('.carousel-slide');
-        const totalSlides = slides.length;
-        const dotsContainer = document.getElementById('carouselDots');
+        (function() {
+            const container = document.getElementById('carouselContainer');
+            if (!container) {
+                console.warn('No se encontró el contenedor del carrusel');
+                return;
+            }
 
-        for (let i = 0; i < totalSlides; i++) {
-            const dot = document.createElement('button');
-            dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
-            dot.setAttribute('data-index', i);
-            dot.addEventListener('click', () => goToSlide(i));
-            dotsContainer.appendChild(dot);
-        }
+            const track = document.getElementById('carouselTrack');
+            if (!track) {
+                console.warn('No se encontró el track del carrusel');
+                return;
+            }
 
-        function updateCarousel() {
-            track.style.transform = `translateX(-${currentSlide * 100}%)`;
-            document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
-                dot.classList.toggle('active', index === currentSlide);
+            const slides = track.querySelectorAll('.carousel-slide');
+            const totalSlides = slides.length;
+            if (totalSlides === 0) {
+                console.warn('No hay slides en el carrusel');
+                return;
+            }
+
+            let currentSlide = 0;
+            const dotsContainer = document.getElementById('carouselDots');
+
+            // Crear dots
+            if (dotsContainer) {
+                for (let i = 0; i < totalSlides; i++) {
+                    const dot = document.createElement('button');
+                    dot.className = `carousel-dot ${i === 0 ? 'active' : ''}`;
+                    dot.setAttribute('data-index', i);
+                    dot.addEventListener('click', () => goToSlide(i));
+                    dotsContainer.appendChild(dot);
+                }
+            }
+
+            function updateCarousel() {
+                track.style.transform = `translateX(-${currentSlide * 100}%)`;
+                if (dotsContainer) {
+                    document.querySelectorAll('.carousel-dot').forEach((dot, index) => {
+                        dot.classList.toggle('active', index === currentSlide);
+                    });
+                }
+            }
+
+            window.moveCarousel = function(direction) {
+                currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
+                updateCarousel();
+            }
+
+            function goToSlide(index) {
+                currentSlide = index;
+                updateCarousel();
+            }
+
+            // Autoplay
+            let autoplay = setInterval(() => window.moveCarousel(1), 4000);
+            container.addEventListener('mouseenter', () => clearInterval(autoplay));
+            container.addEventListener('mouseleave', () => autoplay = setInterval(() => window.moveCarousel(1), 4000));
+
+            // Touch events
+            let touchStartX = 0;
+            let touchEndX = 0;
+            container.addEventListener('touchstart', (e) => {
+                touchStartX = e.changedTouches[0].screenX;
             });
-        }
-
-        function moveCarousel(direction) {
-            currentSlide = (currentSlide + direction + totalSlides) % totalSlides;
-            updateCarousel();
-        }
-
-        function goToSlide(index) {
-            currentSlide = index;
-            updateCarousel();
-        }
-
-        let autoplay = setInterval(() => moveCarousel(1), 4000);
-        const container = document.querySelector('.carousel-container');
-        container.addEventListener('mouseenter', () => clearInterval(autoplay));
-        container.addEventListener('mouseleave', () => autoplay = setInterval(() => moveCarousel(1), 4000));
-
-        let touchStartX = 0;
-        let touchEndX = 0;
-        container.addEventListener('touchstart', (e) => { touchStartX = e.changedTouches[0].screenX; }, { passive: true });
-        container.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            const diff = touchStartX - touchEndX;
-            if (Math.abs(diff) > 50) moveCarousel(diff > 0 ? 1 : -1);
-        }, { passive: true });
-
-        // ===== MENÚ HAMBURGUESA =====
-        const menuToggle = document.getElementById('menuToggle');
-        const navbarMenu = document.getElementById('navbarMenu');
-
-        if (menuToggle && navbarMenu) {
-            menuToggle.addEventListener('click', function(e) {
-                e.stopPropagation();
-                navbarMenu.classList.toggle('abierto');
-                const icon = this.querySelector('i');
-                if (icon) {
-                    icon.classList.toggle('fa-bars');
-                    icon.classList.toggle('fa-times');
+            container.addEventListener('touchend', (e) => {
+                touchEndX = e.changedTouches[0].screenX;
+                const diff = touchStartX - touchEndX;
+                if (Math.abs(diff) > 50) {
+                    window.moveCarousel(diff > 0 ? 1 : -1);
                 }
             });
 
-            // Cerrar al hacer clic en un enlace
-            navbarMenu.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navbarMenu.classList.remove('abierto');
-                    const icon = menuToggle.querySelector('i');
-                    if (icon) {
-                        icon.classList.add('fa-bars');
-                        icon.classList.remove('fa-times');
-                    }
-                });
-            });
-
-            // Cerrar al hacer clic fuera del menú (en móvil)
-            document.addEventListener('click', function(e) {
-                if (window.innerWidth <= 767) {
-                    const isClickInside = navbarMenu.contains(e.target) || menuToggle.contains(e.target);
-                    if (!isClickInside && navbarMenu.classList.contains('abierto')) {
-                        navbarMenu.classList.remove('abierto');
-                        const icon = menuToggle.querySelector('i');
-                        if (icon) {
-                            icon.classList.add('fa-bars');
-                            icon.classList.remove('fa-times');
-                        }
-                    }
-                }
-            });
-        }
+            // Inicializar
+            updateCarousel();
+        })();
     </script>
-
 </body>
 </html>
